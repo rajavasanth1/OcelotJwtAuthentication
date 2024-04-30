@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  weatherwebapi:
+    container_name: weather-api
+    image: ${DOCKER_REGISTRY-}weatherwebapi
+    build:
+      context: .
+      dockerfile: WeatherWebAPI/Dockerfile
+
+
+  apigateway:
+    container_name: api-gateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - 8001:8080
+
+
+  authenticationwebapi:
+    container_name: authentication-api
+    image: ${DOCKER_REGISTRY-}authenticationwebapi
+    build:
+      context: .
+      dockerfile: AuthenticationWebAPI/Dockerfile
+
